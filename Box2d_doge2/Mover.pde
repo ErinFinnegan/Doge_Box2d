@@ -18,10 +18,6 @@ class Mover {
   int fontSize = int(random(12, 40));
 
   Mover(float x, float y) {
-    //mass = m;
-    //    location = new PVector(x, y);
-    //    velocity = new PVector(0, 0);
-    //    acceleration = new PVector(0, 0);
     BodyDef bd = new BodyDef();      
     bd.type = BodyType.DYNAMIC;
     bd.position.set(box2d.coordPixelsToWorld(x, y));
@@ -46,16 +42,6 @@ class Mover {
     body.createFixture(fd);
   }
 
-  //  void applyForce(PVector force) {
-  //    PVector f = PVector.div(force, mass);
-  //    acceleration.add(f);
-  //  }
-
-  //  void update() {
-  //    velocity.add(acceleration);
-  //    location.add(velocity);
-  //    acceleration.mult(0);
-  //  }
 
   void display() {
     Vec2 pos = box2d.getBodyPixelCoord(body);    
@@ -69,30 +55,5 @@ class Mover {
     //ellipse(location.x, location.y, mass*16, mass*16);
     popMatrix();
   }
-
-  //  void checkEdges() {
-  //
-  //    if (location.x < 0) {
-  //      location.x = 0;
-  //      velocity.x *= -1;
-  //    }
-  //
-  //    //    if (location.x > width) {
-  //    //      location.x = width;
-  //    //      velocity.x *= -1;
-  //    //    } 
-  //    if (location.x < 0) {
-  //      location.x = 0;
-  //      velocity.x *= -1;
-  //    }
-  //
-  //    if (location.y > height) {
-  //      velocity.y *= -1;
-  //      location.y = height;
-  //    }
-  //    if (location.y == height) {
-  //      ++bounce;
-  //    }
-  //  }
 }
 
