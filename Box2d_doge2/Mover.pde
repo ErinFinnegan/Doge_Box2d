@@ -5,7 +5,7 @@ class Mover {
   float h = random(4, 16);
 
   String[] words = { 
-    "wow", "much processing", "very Java", "much codee", "very scare",  
+    "wow", "much processing", "very Java", "much codee", "very scare", 
     "wow", "box2d", "toxilibs", "very fixture", "much bounce",
   };
 
@@ -15,7 +15,7 @@ class Mover {
     color(181, 230, 29), color(63, 72, 204), color(255, 174, 201), color(0, 162, 232), color(255, 127, 39), color(255, 242, 0), color(136, 0, 21), color(212, 176, 190), color(207, 209, 100), color(200, 120, 87)
   };
   color rgb = (ArrayOfColors[(int) random(ArrayOfColors.length)]);  //add psychedelic color spray
-
+  int fontSize = int(random(12, 40));
 
   Mover(float x, float y) {
     //mass = m;
@@ -29,8 +29,8 @@ class Mover {
 
     // Define a polygon (this is what we use for a rectangle)
     PolygonShape ps = new PolygonShape();
-    float box2dW = box2d.scalarPixelsToWorld(w/2);
-    float box2dH = box2d.scalarPixelsToWorld(h/2);  // Box2D considers the width and height of a
+    float box2dW = box2d.scalarPixelsToWorld(w+25);
+    float box2dH = box2d.scalarPixelsToWorld(h+20);  // Box2D considers the width and height of a
     ps.setAsBox(box2dW, box2dH);            // rectangle to be the distance from the
     // center to the edge (so half of what we
     // normally think of as width or height.) 
@@ -63,7 +63,7 @@ class Mover {
     pushMatrix();
     translate(pos.x, pos.y);
     fill(rgb);
-    textFont(font, 16);
+    textFont(font, fontSize);
     //    textFont(font, (mass*16));
     text((words[index]), w, h);
     //ellipse(location.x, location.y, mass*16, mass*16);
