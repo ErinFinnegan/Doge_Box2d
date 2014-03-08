@@ -14,7 +14,7 @@ Boundary wall;
 PFont font;
 PImage doge;
 int bounce;
-
+int time;
 
 
 void setup() {
@@ -29,15 +29,18 @@ void setup() {
   font = loadFont("ComicSansMS-Bold-40.vlw");
   randomSeed(1);
 
-  bounce = 0;
-
-  wall = new Boundary(width/2, height-5, width, 10);
+  bounce = 2;
+  millis();
+  time = 0;
+  wall = new Boundary(width/2, height-5, width, 60);
 }
 
 void draw() {
   background(255);
   image(doge, 0, 0);
   box2d.step();
+  time = millis();
+  println(time);
   Mover p = new Mover(mouseX, mouseY);
   movers.add(p);
 
@@ -45,8 +48,7 @@ void draw() {
 
     movers.get(i).display();
   }
-  
-  wall.display();
 
+  wall.display();
 }
 
