@@ -42,7 +42,7 @@ void draw() {
   image(doge, 0, 0);
   box2d.step();
   time = millis();
-  println(time);
+  //println(time);
 
 
   for (int i = 0; i < movers.size(); i++) {
@@ -54,8 +54,9 @@ void draw() {
 }
 
 void mousePressed() {
-  Mover p = new Mover(mouseX, mouseY + wheredamouseat*2);
+  Mover p = new Mover(mouseX, mouseY);
   movers.add(p);
+ println("mouseX " + mouseX " mouseY " + mouseY);
 }
 
 

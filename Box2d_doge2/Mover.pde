@@ -16,7 +16,7 @@ class Mover {
     color(181, 230, 29), color(63, 72, 204), color(255, 174, 201), color(0, 162, 232), color(255, 127, 39), color(255, 242, 0), color(136, 0, 21), color(212, 176, 190), color(207, 209, 100), color(200, 120, 87)
   };
   color rgb = (ArrayOfColors[(int) random(ArrayOfColors.length)]); 
-  int fontSize = int(random(12, 40));
+  int fontSize = int(random(20, 50));
 
   Mover(float x, float y) {
     BodyDef bd = new BodyDef();      
@@ -56,6 +56,8 @@ class Mover {
     textFont(font, fontSize);
     //    textFont(font, (mass*16));
      text((words[index]), w, h);
+   // println("fontSize " + fontSize);
+    //println("fontSize " + fontSize);
     //rect(pos.x, pos.y, fontSize, h);
     //ellipse(location.x, location.y, mass*16, mass*16);
     popMatrix();

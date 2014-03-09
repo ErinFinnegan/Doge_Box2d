@@ -1,0 +1,4 @@
+Nose coordinates:
+mouseX 378  mouseY 231
+mouseX 417  mouseY 232
+mouseX 392  mouseY 264
