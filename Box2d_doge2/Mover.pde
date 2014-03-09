@@ -1,8 +1,8 @@
 class Mover {
 
   Body body;
-  float w =  random(4, 16);
-  float h = random(4, 16);
+  float w =  random(9, 20);
+  float h = random(9, 20);
   int lifespan = 3000 - time;
 
   String[] words = { 
@@ -26,8 +26,8 @@ class Mover {
 
     // Define a polygon (this is what we use for a rectangle)
     PolygonShape ps = new PolygonShape();
-    float box2dW = box2d.scalarPixelsToWorld(w+fontSize);
-    float box2dH = box2d.scalarPixelsToWorld(h + 14);  // Box2D considers the width and height of a
+    float box2dW = box2d.scalarPixelsToWorld(w);
+    float box2dH = box2d.scalarPixelsToWorld(h);  // Box2D considers the width and height of a
     ps.setAsBox(box2dW, box2dH);            // rectangle to be the distance from the
     // center to the edge (so half of what we
     // normally think of as width or height.) 
@@ -46,17 +46,19 @@ class Mover {
 
 
   void display() {
-   // if (isDead == false) {
-      Vec2 pos = box2d.getBodyPixelCoord(body);    
-      float a = body.getAngle();
-      pushMatrix();
-      translate(pos.x, pos.y);
-      fill(rgb);
-      textFont(font, fontSize);
-      //    textFont(font, (mass*16));
-      text((words[index]), w, h);
-      //ellipse(location.x, location.y, mass*16, mass*16);
-      popMatrix();
+    // if (isDead == false) {
+    Vec2 pos = box2d.getBodyPixelCoord(body);    
+    float a = body.getAngle();
+    wheredamouseat = fontSize;
+    pushMatrix();
+    translate(pos.x, pos.y);
+    fill(rgb);
+    textFont(font, fontSize);
+    //    textFont(font, (mass*16));
+     text((words[index]), w, h);
+    //rect(pos.x, pos.y, fontSize, h);
+    //ellipse(location.x, location.y, mass*16, mass*16);
+    popMatrix();
     //}
   }
 

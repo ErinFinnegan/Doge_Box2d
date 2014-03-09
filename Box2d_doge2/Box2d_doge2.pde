@@ -15,6 +15,7 @@ PFont font;
 PImage doge;
 int bounce;
 int time;
+float wheredamouseat;
 
 
 void setup() {
@@ -33,6 +34,7 @@ void setup() {
   millis();
   time = 0;
   wall = new Boundary(width/2, height-5, width, 60);
+  wheredamouseat = 0;
 }
 
 void draw() {
@@ -41,8 +43,7 @@ void draw() {
   box2d.step();
   time = millis();
   println(time);
-  Mover p = new Mover(mouseX, mouseY);
-  movers.add(p);
+
 
   for (int i = 0; i < movers.size(); i++) {
 
@@ -51,4 +52,10 @@ void draw() {
 
   wall.display();
 }
+
+void mousePressed() {
+  Mover p = new Mover(mouseX, mouseY + wheredamouseat*2);
+  movers.add(p);
+}
+
 
