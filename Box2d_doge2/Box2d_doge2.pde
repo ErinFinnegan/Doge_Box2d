@@ -10,12 +10,12 @@ ArrayList<Mover> movers;
 Box2DProcessing box2d;    
 
 Boundary wall;
-
+float wheredamouseatX, wheredamouseatY, wheredamouseat;;
 PFont font;
 PImage doge;
 int bounce;
 int time;
-float wheredamouseat;
+
 
 
 void setup() {
@@ -35,6 +35,8 @@ void setup() {
   time = 0;
   wall = new Boundary(width/2, height-5, width, 60);
   wheredamouseat = 0;
+  wheredamouseatX = 0;
+  wheredamouseatY = 0;
 }
 
 void draw() {
@@ -54,9 +56,10 @@ void draw() {
 }
 
 void mousePressed() {
-  Mover p = new Mover(mouseX, mouseY);
+  
+  Mover p = new Mover(mouseX, mouseY, 20);
   movers.add(p);
- println("mouseX " + mouseX " mouseY " + mouseY);
+ println("mouseX " + mouseX, " mouseY " + mouseY, " wheredamouseatX " + wheredamouseatX, " wheredamouseatY " + wheredamouseatY);
 }
 
 

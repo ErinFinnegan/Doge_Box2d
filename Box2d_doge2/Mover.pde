@@ -3,6 +3,7 @@ class Mover {
   Body body;
   float w =  random(9, 20);
   float h = random(9, 20);
+  float r;
   int lifespan = 3000 - time;
 
   String[] words = { 
@@ -18,11 +19,13 @@ class Mover {
   color rgb = (ArrayOfColors[(int) random(ArrayOfColors.length)]); 
   int fontSize = int(random(20, 50));
 
-  Mover(float x, float y) {
+  Mover(float x, float y, float r_) {
+    r = r_;
     BodyDef bd = new BodyDef();      
     bd.type = BodyType.DYNAMIC;
     bd.position.set(box2d.coordPixelsToWorld(x, y));
     body = box2d.createBody(bd);
+
 
     // Define a polygon (this is what we use for a rectangle)
     PolygonShape ps = new PolygonShape();
@@ -50,18 +53,31 @@ class Mover {
     Vec2 pos = box2d.getBodyPixelCoord(body);    
     float a = body.getAngle();
     wheredamouseat = fontSize;
+
+    Fixture f = body.getFixtureList();
+    PolygonShape ps = (PolygonShape) f.getShape();
+
+
+    rectMode(CENTER);
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(rgb);
-    textFont(font, fontSize);
-    //    textFont(font, (mass*16));
-     text((words[index]), w, h);
-   // println("fontSize " + fontSize);
-    //println("fontSize " + fontSize);
-    //rect(pos.x, pos.y, fontSize, h);
-    //ellipse(location.x, location.y, mass*16, mass*16);
+    rotate(-a);
+    //fill(127);
+    stroke(0);
+    strokeWeight(2);
+    beginShape();
+    //println(vertices.length);
+    // For every vertex, convert to pixel vector
+    for (int i = 0; i < ps.getVertexCount(); i++) {
+      Vec2 v = box2d.vectorWorldToPixels(ps.getVertex(i));
+      vertex(v.x, v.y);
+      fill(rgb);
+      textFont(font, fontSize);
+      // text((words[index]), w, h);
+      text((words[index]), v.x, v.y);
+    }
+    endShape(CLOSE);
     popMatrix();
-    //}
   }
 
   // Is the particle still useful?
@@ -72,6 +88,32 @@ class Mover {
     else {
       return false;
     }
+  }
+
+  void makeBody(Vec2 center) {
+
+    Vec2[] vertices = new Vec2[4];
+    vertices[0] = box2d.vectorPixelsToWorld(new Vec2(-15, 25));
+    vertices[1] = box2d.vectorPixelsToWorld(new Vec2(15, 0));
+    vertices[2] = box2d.vectorPixelsToWorld(new Vec2(20, -15));
+    vertices[3] = box2d.vectorPixelsToWorld(new Vec2(-10, -10));
+
+    // Define a polygon (this is what we use for a rectangle)
+    PolygonShape ps = new PolygonShape();
+    ps.set(vertices, vertices.length);
+
+    // Define the body and make it from the shape
+    BodyDef bd = new BodyDef();
+    bd.type = BodyType.DYNAMIC;
+    bd.position.set(box2d.coordPixelsToWorld(center));
+    body = box2d.createBody(bd);
+
+    body.createFixture(ps, 1.0);
+
+
+    // Give it some initial random velocity
+    body.setLinearVelocity(new Vec2(random(-5, 5), random(2, 5)));
+    body.setAngularVelocity(random(-5, 5));
   }
 }
 
