@@ -69,13 +69,15 @@ class Mover {
     //println(vertices.length);
     // For every vertex, convert to pixel vector
     for (int i = 0; i < ps.getVertexCount(); i++) {
+      //Vec2 v = box2d.vectorWorldToPixels(ps.getVertex(i));
       Vec2 v = box2d.vectorWorldToPixels(ps.getVertex(i));
       vertex(v.x, v.y);
       fill(rgb);
-      textFont(font, fontSize);
       // text((words[index]), w, h);
-      text((words[index]), v.x, v.y);
+      text((words[index]), w, h);
+      println(words.length);
     }
+    textFont(font, fontSize);
     endShape(CLOSE);
     popMatrix();
   }

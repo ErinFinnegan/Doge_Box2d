@@ -59,7 +59,7 @@ void mousePressed() {
   
   Mover p = new Mover(mouseX, mouseY, 20);
   movers.add(p);
- println("mouseX " + mouseX, " mouseY " + mouseY, " wheredamouseatX " + wheredamouseatX, " wheredamouseatY " + wheredamouseatY);
+// println("mouseX " + mouseX, " mouseY " + mouseY, " wheredamouseatX " + wheredamouseatX, " wheredamouseatY " + wheredamouseatY);
 }
 
 
