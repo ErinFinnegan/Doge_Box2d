@@ -6,26 +6,39 @@ class Mover {
   float r;
   int lifespan = 3000 - time;
 
-  String[] words = { 
-    "wow", "much processing", "very Java", "much codee", "very scare", 
-    "wow", "box2d", "toxilibs", "very fixture", "much bounce",
+  //  String[] words = { 
+  //    "wow", "much processing", "very Java", "much codee", "very scare", 
+  //    "wow", "box2d", "toxilibs", "very fixture", "much bounce",
+  String[] superlatives = {
+    "such", "very", "wow", "lol", "much"
+  };
+  String[] subjects = {
+    "box2d", "shiffman", "boids", "physics", "processing", "box2d", "scare", "H-E-L-P", "math", "libraries", "homewokr"
   };
 
-  int index = int(random(words.length)); 
+  //  int index = int(random(words.length)); 
+  //int index = int(superlatives[superlativeIndex] + " " + subjects[subjectIndex]);
+  int superlativeIndex = int(random(superlatives.length));
+  int subjectIndex = int(random(subjects.length));
+
 
   color[] ArrayOfColors = { 
     color(181, 230, 29), color(63, 72, 204), color(255, 174, 201), color(0, 162, 232), color(255, 127, 39), color(255, 242, 0), color(136, 0, 21), color(212, 176, 190), color(207, 209, 100), color(200, 120, 87)
   };
   color rgb = (ArrayOfColors[(int) random(ArrayOfColors.length)]); 
   int fontSize = int(random(20, 50));
-
+  //  for (int s = 0 ; s<10; s++) {
+  //    // int superlativeIndex = int(random(superlatives.length));
+  //    // int subjectIndex = int(random(subjects.length));
+  //    println(superlatives[superlativeIndex] + " " + subjects[subjectIndex]);
+  //  }
+  //}
   Mover(float x, float y, float r_) {
     r = r_;
     BodyDef bd = new BodyDef();      
     bd.type = BodyType.DYNAMIC;
     bd.position.set(box2d.coordPixelsToWorld(x, y));
     body = box2d.createBody(bd);
-
 
     // Define a polygon (this is what we use for a rectangle)
     PolygonShape ps = new PolygonShape();
@@ -61,10 +74,10 @@ class Mover {
     rectMode(CENTER);
     pushMatrix();
     translate(pos.x, pos.y);
+    textFont(font, fontSize);
     rotate(-a);
-    //fill(127);
-    stroke(0);
-    strokeWeight(2);
+    noStroke();
+    //  strokeWeight(2);
     beginShape();
     //println(vertices.length);
     // For every vertex, convert to pixel vector
@@ -73,11 +86,9 @@ class Mover {
       Vec2 v = box2d.vectorWorldToPixels(ps.getVertex(i));
       vertex(v.x, v.y);
       fill(rgb);
-      // text((words[index]), w, h);
-      text((words[index]), w, h);
-      println(words.length);
+
+      text(((superlatives[superlativeIndex] + " " + subjects[subjectIndex])), w, h);
     }
-    textFont(font, fontSize);
     endShape(CLOSE);
     popMatrix();
   }
