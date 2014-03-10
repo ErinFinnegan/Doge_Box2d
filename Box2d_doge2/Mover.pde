@@ -16,10 +16,11 @@ class Mover {
     "box2d", "shiffman", "boids", "physics", "processing", "box2d", "scare", "H-E-L-P", "math", "libraries", "homewokr"
   };
 
-  //  int index = int(random(words.length)); 
-  //int index = int(superlatives[superlativeIndex] + " " + subjects[subjectIndex]);
+
   int superlativeIndex = int(random(superlatives.length));
   int subjectIndex = int(random(subjects.length));
+  // find the length of the created phrase
+  // int totalLength = subjectIndex(of string) + superlativeIndex(of string)
 
 
   color[] ArrayOfColors = { 
@@ -81,13 +82,15 @@ class Mover {
     beginShape();
     //println(vertices.length);
     // For every vertex, convert to pixel vector
+    fill(rgb);
+    text(((superlatives[superlativeIndex] + " " + subjects[subjectIndex])), w, h);
+
     for (int i = 0; i < ps.getVertexCount(); i++) {
       //Vec2 v = box2d.vectorWorldToPixels(ps.getVertex(i));
       Vec2 v = box2d.vectorWorldToPixels(ps.getVertex(i));
       vertex(v.x, v.y);
-      fill(rgb);
 
-      text(((superlatives[superlativeIndex] + " " + subjects[subjectIndex])), w, h);
+      //draw the text on top of the box, but only once, not at like, every vertex
     }
     endShape(CLOSE);
     popMatrix();
