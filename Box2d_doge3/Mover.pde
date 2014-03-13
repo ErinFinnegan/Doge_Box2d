@@ -72,27 +72,19 @@ class Mover {
     PolygonShape ps = (PolygonShape) f.getShape();
 
 
-    rectMode(CENTER);
+//    rectMode(CENTER);
     pushMatrix();
     translate(pos.x, pos.y);
     textFont(font, fontSize);
     rotate(-a);
     noStroke();
-    //  strokeWeight(2);
-    beginShape();
-    //println(vertices.length);
-    // For every vertex, convert to pixel vector
     fill(rgb);
-    text(((superlatives[superlativeIndex] + " " + subjects[subjectIndex])), w, h);
-
-    for (int i = 0; i < ps.getVertexCount(); i++) {
-      //Vec2 v = box2d.vectorWorldToPixels(ps.getVertex(i));
-      Vec2 v = box2d.vectorWorldToPixels(ps.getVertex(i));
-      vertex(v.x, v.y);
-
-      //draw the text on top of the box, but only once, not at like, every vertex
-    }
-    endShape(CLOSE);
+    rect(0, 0, w, h);
+    text(((superlatives[superlativeIndex] + " " + subjects[subjectIndex])), w/2, h/2);
+  int length1 = superlativesIndex.length;
+  int length2 = subjectsIndex.length;
+  int length3 = length1 + length2;
+  println("length1 = " + length1, " length2 = " + length2, " length3 = " + length3);
     popMatrix();
   }
 
@@ -106,9 +98,9 @@ class Mover {
     }
   }
 
-   void makeBody(Vec2 center, float w_, float h_) {
+  void makeBody(Vec2 center, float w_, float h_) {
 
-     // Define a polygon (this is what we use for a rectangle)
+    // Define a polygon (this is what we use for a rectangle)
     PolygonShape sd = new PolygonShape();
     float box2dW = box2d.scalarPixelsToWorld(w_/2);
     float box2dH = box2d.scalarPixelsToWorld(h_/2);
@@ -126,9 +118,9 @@ class Mover {
     BodyDef bd = new BodyDef();
     bd.type = BodyType.DYNAMIC;
     bd.position.set(box2d.coordPixelsToWorld(center));
-    body = box2d.createBody(bd);
 
-    body.createFixture(ps, 1.0);
+    body = box2d.createBody(bd);
+    body.createFixture(fd);
 
 
     // Give it some initial random velocity
