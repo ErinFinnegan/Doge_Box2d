@@ -46,6 +46,9 @@ class Mover {
     float box2dW = box2d.scalarPixelsToWorld(w);
     float box2dH = box2d.scalarPixelsToWorld(h);  // Box2D considers the width and height of a
     ps.setAsBox(box2dW, box2dH);            // rectangle to be the distance from the
+
+    float box2dFS = box2d.scalarPixelsToWorld(fontSize);
+    int(fontSize);
     // center to the edge (so half of what we
     // normally think of as width or height.) 
     // Define a fixture
@@ -72,19 +75,19 @@ class Mover {
     PolygonShape ps = (PolygonShape) f.getShape();
 
 
-//    rectMode(CENTER);
+    //    rectMode(CENTER);
     pushMatrix();
     translate(pos.x, pos.y);
     textFont(font, fontSize);
     rotate(-a);
     noStroke();
     fill(rgb);
-    rect(0, 0, w, h);
-    text(((superlatives[superlativeIndex] + " " + subjects[subjectIndex])), w/2, h/2);
-  int length1 = superlativesIndex.length;
-  int length2 = subjectsIndex.length;
-  int length3 = length1 + length2;
-  println("length1 = " + length1, " length2 = " + length2, " length3 = " + length3);
+    text(((superlatives[superlativeIndex] + " " + subjects[subjectIndex])), w, h);
+    int length1 = superlatives[superlativeIndex].length();
+    int length2 = subjects[subjectIndex].length();
+    int length3 = length1 + length2;
+    println("fontSize = " + fontSize, " w = " + w, " h = " + h, " length3 = " + length3);
+    rect(0, 0, fontSize, length3);
     popMatrix();
   }
 
